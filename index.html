@@ -1,22 +1,93 @@
-<html lang="en-us">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Trivia Game</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <!-- Link to Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <!-- Link to moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- Link to our JS -->
+    <script src="assets/javascript/app.js"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="app.js"></script>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Link to CSS -->
+	  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<title>Train Timetable.</title>
 </head>
-
 <body>
+  <div class= "wrapper">
 
-    <!-- Adds a link to the javascript file. Loaded at the bottom so it waits for the HTML content to display first.
-	If you put this at the top it will crash, because the HTML IDs won't exist yet.-->
-  
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <div class="jumbotron">
+      <header>
+        <h1>The Daily Train Schedule.</h1>
+      </header>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="panel-primary">
+            <h2 class="panel-heading">Scheduled Trains<span id="currentTimeSpan"></span></h2>
+          </div>
+          <div class="panel panel-body">
+            <table class="table table-hover" id='trainScheduleTable'>
+              <thead>
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th>Frequency (Min)</th>
+                  <th>First Train</th>
+                  <th>Next Arrival</th>
+                  <th>Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody id="trainScheduleBody">
+                <!-- Use JS to fill this data -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-primary">
+            <h2 class="panel-heading">Add a new Train!</h2>
+          </div>
+          <div class="panel-body">
+
+          <!-- Entry Form -->
+          <form>
+            <div class="form-group">
+              <label for="">Train Name</label>
+              <input type="text" class="form-control" id="trainNameInput">
+            </div>
+
+            <div class="form-group">
+              <label for="">Destination</label>
+              <input type="text" class="form-control" id="destinationInput">
+            </div>
+
+            <div class="form-group">
+              <label for="">Frequency (Minutes)</label>
+              <input type="text" class="form-control" id="frequencyInput">
+            </div>
+
+            <div class="form-group">
+              <label for="">First Train Time ( Format HH:MM )</label>
+              <input type="text" class="form-control" id="startTimeInput">
+            </div>
+          
+            <button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>
+          </form>
+
+          </div>
+
+        </div><!-- End col-12 -->
+      </div><!-- End row -->
+    </div><!-- End container -->
+  </div><!-- End wrapper -->
 </body>
-
 </html>
