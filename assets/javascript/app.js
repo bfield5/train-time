@@ -51,15 +51,14 @@ $(document).ready(function() {
         $("#destinationInput").val("");
         $("#frequencyInput").val("");
         $("#startTimeInput").val("");
-        caputredValues;
     };
 
 
 
     /***  EVENTS  ***/
-    $("#addTrainBtn").on("click", function() {
+    $("#addTrainBtn").on("click", function(event) {
         captureData();
-        return false; // Or Prevent Default. No preference.
+        event.preventDefault();
     });
 
     //firebase.js function of child added, run function with returned parameter
