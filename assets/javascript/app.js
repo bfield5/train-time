@@ -1,31 +1,22 @@
-$("document").ready(function() {
+$(document).ready(function() {
     console.log("JS and jQuery is linked and working"); // Confirm JS
 
-<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
 
   // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCs8FvNcPbJNBLA1Jz2gk70G0NcVTfk6W0",
-        authDomain: "traindatabase-17254.firebaseapp.com",
-        databaseURL: "https://traindatabase-17254.firebaseio.com",
-        projectId: "traindatabase-17254",
-        storageBucket: "traindatabase-17254.appspot.com",
-        messagingSenderId: "351808359035"
-    };
-    firebase.initializeApp(config);
-
-    service cloud.firestore {
-        match /databases/{database}/documents {
-          match /{document=**} {
-            allow read, write;
-          }
-        }
-      }
-
-
+ // Initialize Firebase
+ var config = {
+    apiKey: "AIzaSyCs8FvNcPbJNBLA1Jz2gk70G0NcVTfk6W0",
+    authDomain: "traindatabase-17254.firebaseapp.com",
+    databaseURL: "https://traindatabase-17254.firebaseio.com",
+    projectId: "traindatabase-17254",
+    storageBucket: "traindatabase-17254.appspot.com",
+    messagingSenderId: "351808359035"
+  };
+  firebase.initializeApp(config);
 
     /***  GLOBAL VARIABLES  ***/
-    var trainDatabase = new Firebase("https://vivid-inferno-4129.firebaseio.com/");
+    var database = firebase.database();
+    // var trainDatabase = new Firebase("https://vivid-inferno-4129.firebaseio.com/");
     var caputredValues;
 
     /***  FUNCTIONS  ***/
@@ -47,7 +38,9 @@ $("document").ready(function() {
         }
 
         //push data to Firebase
-        trainDatabase.push(caputredValues);
+        // trainDatabase.push(caputredValues);
+        database.ref().push(caputredValues)
+
         alert("Train added sucessfully");
         clearDataForms();
     };
@@ -70,7 +63,7 @@ $("document").ready(function() {
     });
 
     //firebase.js function of child added, run function with returned parameter
-    trainDatabase.on("child_added", function(snapshot) {
+    database.ref().on("child_added", function(snapshot) {
         //variables for name, destination, frequency, and start time
         var na = snapshot.val().name;
         var dest = snapshot.val().destination;
